@@ -4,7 +4,14 @@ import jakarta.persistence.EntityManager;
 import vn.edu.eiu.cse456.infra.JpaUtil;
 import vn.edu.eiu.cse456.repository.Interfaces.IGenericRepository;
 
-public class GenericRepository implements IGenericRepository {
+import java.util.List;
+
+public class GenericRepository<T> implements IGenericRepository<T> {
+    private Class<T> entityClass;
+
+    public GenericRepository(Class<T> entityClass) {
+        this.entityClass = entityClass;
+    }
 
     @Override
     public void save(Object entity) {
@@ -34,13 +41,19 @@ public class GenericRepository implements IGenericRepository {
     }
 
     @Override
-    public Object findById(Object entity) {
-        return null;
+    public T findById(Object id) {
+        EntityManager em = JpaUtil.getEntityManager();
+        T result = em.find(entityClass, id);
+        em.close();
+        return result;
     }
 
     @Override
-    public Iterable findAll() {
-        return null;
+    public List<T> findAll() {
+        EntityManager em = JpaUtil.getEntityManager();
+        List<T> result = em.createQuery("SELECT e FROM " + entityClass.getSimpleName() + " e", entityClass).getResultList();
+        em.close();
+        return result;
     }
 
 

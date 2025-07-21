@@ -6,6 +6,6 @@ public interface IGenericRepository<T> {
     void save(T entity);
     void update(T entity);
     void remove(T entity);
-    T findById(T entity);
+    T findById(Object id);
     Iterable<T> findAll();
 }

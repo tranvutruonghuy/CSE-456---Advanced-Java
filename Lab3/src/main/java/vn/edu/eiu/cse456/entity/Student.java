@@ -2,10 +2,7 @@ package vn.edu.eiu.cse456.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 @NoArgsConstructor
@@ -14,6 +11,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "tbl_Student")
+
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,14 +29,28 @@ public class Student {
     @Column(name = "gpa")
     private double gpa;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "major_id", nullable = false)
     private Major major;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "school_id", nullable = false)
     private School school;
 
     @Column(name = "enrollment_year", nullable = false)
     private int enrollmentYear;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", fullName='" + fullName + '\'' +
+                ", gender=" + gender +
+                ", dob=" + dob +
+                ", gpa=" + gpa +
+                ", major=" + major.getMajorName() +
+                ", school=" + school.getSchoolName() +
+                ", enrollmentYear=" + enrollmentYear +
+                '}';
+    }
 }

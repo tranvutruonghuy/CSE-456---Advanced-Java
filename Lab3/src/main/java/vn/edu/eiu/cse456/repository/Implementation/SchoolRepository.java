@@ -1,4 +1,9 @@
 package vn.edu.eiu.cse456.repository.Implementation;
 
-public class SchoolRepository extends GenericRepository {
+import vn.edu.eiu.cse456.entity.School;
+
+public class SchoolRepository extends GenericRepository<School> {
+    public SchoolRepository(Class<School> entityClass) {
+        super(entityClass);
+    }
 }

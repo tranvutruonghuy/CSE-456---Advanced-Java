@@ -11,7 +11,7 @@
     <persistence-unit name="pu1-student_3layer" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Khai báo các entity class để map xuống table, chỉ cần gõ tên class và chọn -->
-         <class>vn.edu.eiu.cse456.entity.Student</class>
+        <class>vn.edu.eiu.cse456.entity.Student</class>
         <class>vn.edu.eiu.cse456.entity.School</class>
         <class>vn.edu.eiu.cse456.entity.Major</class>
 
@@ -74,7 +74,7 @@
             "create": Xoá toàn bộ bảng cũ rồi tạo bảng mới từ đầu
             "create-drop": Tạo bảng khi chạy app, xoá toàn bộ bảng khi app dừng
             "drop": (Hiếm dùng) Xoá toàn bộ bảng khi app khởi động – không tạo lại bảng -->
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
 
             <!-- Hiển thị SQL khi chạy (tùy chọn) -->
             <property name="hibernate.show_sql" value="true"/>
