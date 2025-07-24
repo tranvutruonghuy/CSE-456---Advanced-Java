@@ -38,6 +38,10 @@ public class School {
         this.majors.remove(major);
         major.setSchool(null);
     }
+    public void removeStudent(Student student) {
+        this.students.remove(student);
+        student.setSchool(null);
+    }
 
     public void addStudent(Student student) {
         this.students.add(student);

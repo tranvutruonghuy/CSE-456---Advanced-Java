@@ -29,6 +29,10 @@ public class Major {
         students.add(student);
         student.setMajor(this);
     }
+    public void removeStudent(Student student) {
+        students.remove(student);
+        student.setMajor(null);
+    }
 
     @Override
     public String toString() {
