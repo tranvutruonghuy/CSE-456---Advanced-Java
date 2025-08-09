@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/student/edit}" th:object="${student}" method="post">
+  <p>
+    <lable for="id">ID</lable>
+    <input type="text" name="id" id="id" th:value="${foundStudent.id}">
+  </p>
+  <p>
+    <lable for="id">Name</lable>
+    <input type="text" name="name" id="name" th:value="${foundStudent.name}">
+  </p>
+  <p>
+    <lable for="id">Year of Birth</lable>
+    <input type="text" name="yob" id="yob" th:value="${foundStudent.yob}">
+  </p>
+  <p>
+    <lable for="id">GPA</lable>
+    <input type="text" name="gpa" id="gpa" th:value="${foundStudent.gpa}">
+  </p>
+  <button type="submit">save</button>
+</form>
+</body>
+</html>
