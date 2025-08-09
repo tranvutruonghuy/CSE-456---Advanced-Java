@@ -49,7 +49,7 @@ public class Main {
         // Select first and third product from catalog
         List<Product> selectedProducts = Arrays.asList(catalogProducts.get(0), catalogProducts.get(2));
         Invoice invoice = invoiceService.createInvoice(customer, selectedProducts);
-
+        System.out.println("Invoice ID-" + invoice.getId() + " created");
         System.out.println("\n=== Application completed successfully ===");
     }
 
