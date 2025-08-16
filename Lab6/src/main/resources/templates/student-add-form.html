@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/students/new}" th:object="${student}" method="post">
+    <p>
+        <lable for="id">ID</lable>
+        <input type="text" name="id" id="id">
+    </p>
+    <p>
+        <lable for="id">Name</lable>
+        <input type="text" name="name" id="name">
+    </p>
+    <p>
+        <lable for="id">Year of Birth</lable>
+        <input type="text" name="yob" id="yob">
+    </p>
+    <p>
+        <lable for="id">GPA</lable>
+        <input type="text" name="gpa" id="gpa">
+    </p>
+    <button type="submit">save</button>
+</form>
+</body>
+</html>

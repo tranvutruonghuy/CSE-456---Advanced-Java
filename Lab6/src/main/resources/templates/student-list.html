@@ -8,6 +8,27 @@
 <script th:inline="javascript" th:if="${pid}!=null">
     window.addEventListener('load', function () {alert([[${pmsg}]])})
 </script>
+
+<script>
+    function confirmDelete(studentId, studentName) {
+        if (confirm('Are you sure you want to delete student "' + studentName + '"? This action cannot be undone.')) {
+            window.location.href = '/students/delete/' + studentId;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteLinks = document.querySelectorAll('.delete-link');
+        deleteLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const studentId = this.getAttribute('data-student-id');
+                const studentName = this.getAttribute('data-student-name');
+                confirmDelete(studentId, studentName);
+            });
+        });
+    });
+</script>
+
 <h1 th:text="'The list of students'">inner text này sẽ gị ghi đè</h1>
 <div th:if="${pid}!=null">
     <p th:text="'ID: ' + ${pid}"></p>
@@ -30,11 +51,13 @@
             <td th:text="${student.yob}"></td>
             <td th:text="${student.gpa}"></td>
             <td>
-                <a th:href="@{'/student/edit/' + ${student.id}}">Edit</a> |
-                <a th:href="@{'/student/delete/' + ${student.id}}">Delete</a>
+                <a th:href="@{'/students/edit/' + ${student.id}}">Edit</a> |
+                <a href="#" class="delete-link" 
+                   th:attr="data-student-id=${student.id}, data-student-name=${student.name}">Delete</a>
             </td>
         </tr>
     </tbody>
 </table>
+<a th:href="@{'/students/new'}">Add new Student</a>
 </body>
 </html>
