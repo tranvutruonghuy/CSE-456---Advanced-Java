@@ -1,9 +1,6 @@
 package com.example.FinalMockTest.model;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,6 +18,7 @@ import java.time.LocalDateTime;
 public class Equipment {
     @Id
     @Column(columnDefinition = "CHAR(10)")
+    @NotBlank(message = "ID must be not left blank")
     private String equipmentId;
 
 //    @Column(columnDefinition = "INT")
@@ -42,7 +40,6 @@ public class Equipment {
     @NotNull(message = "Quantity date must not be null")
     private int quantityAvailable;
 
-    @NotNull(message = "Purchase date must not be null")
     @CreatedDate
     private LocalDateTime datetime;
 

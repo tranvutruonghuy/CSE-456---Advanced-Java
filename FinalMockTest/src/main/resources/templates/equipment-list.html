@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Student-list</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="std-list-container">
+    <div class="welcome">
+        <!--<p>Welcome, <span class="username" th:text="${name}">username </span></p>-->
+        <span>Welcome, <span class="username" th:text="${session.user.username}">username </span></span></br>
+        <a th:href="@{'/logout'}">Logout</a>
+    </div>
+    <h1>Equipment-list</h1>
+<!--    <form th:action="@{/students}" method="get">-->
+<!--        <input placeholder="Search by name" type="text" name="keyword">-->
+<!--        <button type="submit">Search</button>-->
+<!--    </form>-->
+    <!--Thông báo lỗi khi không đúng role khi cố tình gõ link trực tiếp-->
+    <span class="errRole" th:if="${errRole != null}" th:text="${errRole}"></span>
+    <a th:href="@{/equipments/add}" th:if="${session.user.role == 1}">Add new equipment</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Equipment ID</th>
+            <th>Name</th>
+            <th>Purchase Price</th>
+            <th>Quantity</th>
+            <th>Purchase Date</th>
+            <th>Type</th>
+            <th th:if="${session.user.role != 3}">Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="e : ${equipments}">
+            <td th:text = "${e.equipmentId}"></td>
+            <td th:text = "${e.equipmentName}"></td>
+            <td th:text = "${e.purchasePrice}"></td>
+            <td th:text = "${e.quantityAvailable}"></td>
+            <td th:text="${#temporals.format(e.datetime,'dd/MM/yyyy HH:mm:ss')}"></td>
+            <td th:text = "${e.equipmentType.typeName}"></td>
+            <td th:if="${session.user.role == 1 or session.user.role == 2}">
+                <a th:href="@{'/equipments/edit/' + ${e.equipmentId}}"
+                   th:if="${session.user.role == 1 or session.user.role == 2}">Edit</a>
+                <a th:href="@{'/equipments/delete/' + ${e.equipmentId}}"
+                   th:if="${session.user.role == 1}"
+                   onclick="confirm('Are you sure you want to delete this student?')"> | Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

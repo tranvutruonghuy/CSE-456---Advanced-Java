@@ -52,7 +52,7 @@ public class DataInitializer implements CommandLineRunner {
         equipmentTypeService.saveEquipmentType(cate4);
 
         User u1 = new User("admin", "admin", 1);
-        User u2 = new User("staff01", "staff", 2);
+        User u2 = new User("staff", "staff", 2);
         User u3 = new User("customer", "customer", 3);
 
         userService.save(u1);

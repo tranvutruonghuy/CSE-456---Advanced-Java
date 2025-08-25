@@ -30,6 +30,13 @@ public class EquipmentService {
     public List<Equipment> searchEquipmentsByName(String keyword){
         return equipmentRepo.searchAllByEquipmentNameContainingIgnoreCase(keyword);
     }
+    //Hàm phục vụ kiểm tra trùng pk
+    public Boolean checkExistsById(String id){
+        return equipmentRepo.existsById(id); //Hàm tự sinh
+    }
 
+//    public List<Equipment> getTop3PerType(){
+//        return equipmentRepo.searchTopByEquipmentType
+//    }
 
 }
